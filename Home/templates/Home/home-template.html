@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="robots" content="all,follow">
+        <meta name="googlebot" content="index,follow,snippet,archive">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Obaju e-commerce template">
+        <meta name="author" content="Mungujakisa Nickson | nikesonic.com">
+        <meta name="keywords" content="">
+
+        <title>{% block title%} Home {% endblock %}</title>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+        <!-- styles -->
+    {% load staticfiles %}
+        <link href="{%  static 'Home/css/font-awesome.css' %}" rel="stylesheet">
+        <link href="{%  static 'Home/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{%  static 'Home/css/animate.min.css' %}" rel="stylesheet">
+        <link href="{%  static 'Home/css/owl.carousel.css' %}" rel="stylesheet">
+        <link href="{%  static 'Home/css/owl.theme.css' %}" rel="stylesheet">
+        <!-- theme stylesheet -->
+        <link href="{%  static 'Home/css/style.default.css' %}" rel="stylesheet" id="theme-stylesheet">
+        <!-- your stylesheet with modifications -->
+        <link href="{%  static 'Home/css/custom.css' %}" rel="stylesheet">
+
+    {% block stylesheet %}
+        <!-- subclassing views will use this to define custom style sheets -->
+    {% endblock %}
+        <script src="{%  static 'Home/js/respond.min.js' %}"></script>
+        <link rel="shortcut icon" href="favicon.png">
+    </head>
+    <body>
+
+            <!-- *** TOPBAR ***
+ _________________________________________________________ -->
+        <div id="top">
+            <div class="container">
+                <div class="col-md-12" data-animate="fadeInDown">
+                    <ul class="menu">
+                        <li>
+                            <a href="{% url 'home:contact' %}">Contact</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'home:about' %}">About</a>
+                        </li>
+                        <li>
+                            {% block auth_action %}
+                            <a href="{% url 'home:logout' %}">Logout</a>
+                            {% endblock %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- *** TOP BAR END *** -->
+            {% block navbar %}
+        <!-- *** NAVBAR ***
+ _________________________________________________________ -->
+        <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
+                        <img src="img/logo.png" alt="Nikesonic logo" class="hidden-xs">
+                        <img src="img/logo-small.png" alt="Nikesonic logo" class="visible-xs">
+                        <span class="sr-only">Obaju - go to homepage</span>
+                    </a>
+                    <div class="navbar-buttons">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+                            <span class="sr-only">Toggle navigation</span>
+                            <i class="fa fa-align-justify"></i>
+                        </button>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                            <span class="sr-only">Toggle search</span>
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <a class="btn btn-default navbar-toggle" href="basket.html"> <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">3 items in cart</span> </a>
+                    </div>
+                </div>
+                <!--/.navbar-header -->
+                <div class="navbar-collapse collapse" id="navigation">
+                    <ul class="nav navbar-nav navbar-left">
+                    {% block active_nav %}
+                    <li class="active">
+                            <a href="/home">Home</a>
+                        </li>
+                        <li class="">
+                            <a href="/posts">Posts</a>
+                        </li>
+                        <li class="">
+                            <a href="/friends">Friends</a> <!--TODO: Remove hardcoded-->
+                        </li>
+                        <li class="">
+                            {% if request.user.username == "guest" %}
+                                <a href="/profile/register/">Profile</a> <!--TODO: Remove hardcodede-->
+                                {% else %}
+                                <a href="/profile/view/{{ request.user.username }}">Profile</a> <!--TODO: Remove hardcodede-->
+                            {% endif %}
+                        </li>
+                        <li class="">
+                            <a href="/messages">Messages</a>
+                        </li>
+                    {% endblock %}
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+                <div class="navbar-buttons">
+                    <div class="navbar-collapse collapse right" id="basket-overview">
+                        <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">N New Messages</span></a>
+                    </div>
+                    <!--/.nav-collapse -->
+                    <div class="navbar-collapse collapse right" id="search-not-mobile">
+                        <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
+                            <span class="sr-only">Toggle search</span>
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="collapse clearfix" id="search">
+                    <form class="navbar-form" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="input-group-btn"> <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-search"></i>
+                                </button> </span>
+                        </div>
+                    </form>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#navbar -->
+        <!-- *** NAVBAR END *** -->
+            {% endblock %}
+{% block body %}
+
+{% endblock %}
+            <!-- *** FOOTER ***
+ _________________________________________________________ -->
+            <div id="footer" data-animate="fadeInUp">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <h4>Pages</h4>
+                            <ul>
+                                <li>
+                                    <a href="/home/">Home</a> <!--TODO: remove hardcoded urls form here downwards....-->
+                                </li>
+                                <li>
+                                    <a href="/posts/">Posts</a>
+                                </li>
+                                <li>
+                                    <a href="/friends/">Friends</a>
+                                </li>
+                                <li>
+                                    <a href="/profile/{{ request.user.username }}">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="/messages/">Messages</a>
+                                </li>
+                                <li>
+                                    <a href="/about/">About us</a>
+                                </li>
+                                <li>
+                                    <a href="/about/faq">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="/about/contact">Contact us</a>
+                                </li>
+                            </ul>
+                            <!--
+                            <hr>
+                            <h4>User section</h4>
+                            <ul>
+                                <li>
+                                    <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                                </li>
+                                <li>
+                                    <a href="register.html">Regiter</a>
+                                </li>
+                            </ul>
+                            -->
+                            <hr class="hidden-md hidden-lg hidden-sm">
+                        </div>
+                        <!-- /.col-md-3 -->
+                        <!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6">
+                            <h4>Where to find us</h4>
+                            <p> <!--TODO: Put in a different address b4 publishing-->
+                                <strong>Obaju Ltd.</strong>
+                                <br>13/25 New Avenue
+                                <br>New Heaven
+                                <br>45Y 73J
+                                <br>England
+                                <br><strong>Great Britain</strong>
+                            </p>
+                            <a href="/about/contact">Go to contact page</a> <!--TODO: remove hardcoded url-->
+                            <hr class="hidden-md hidden-lg">
+                        </div>
+                        <!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6">
+                            <h4>Social</h4>
+                            <p class="social"> <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a> <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a> <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a> <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a> <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a> </p>
+                        </div>
+                        <!-- /.col-md-3 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /#footer -->
+            <!-- *** FOOTER END *** -->
+            <!-- *** COPYRIGHT ***
+ _________________________________________________________ -->
+            <div id="copyright">
+                <div class="container">
+                    <div class="col-md-6">
+                        <p class="pull-left">© 2016 Mungujakisa Nickson.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="pull-right">Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious.com</a> <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  --> </p>
+                    </div>
+                </div>
+            </div>
+            <!-- *** COPYRIGHT END *** -->
+        <!-- *** SCRIPTS TO INCLUDE ***
+ _________________________________________________________ -->
+        <script src="{%  static 'Home/js/jquery-1.11.0.min.js' %}"></script>
+        <script src="{%  static 'Home/js/bootstrap.min.js' %}"></script>
+        <script src="{%  static 'Home/js/jquery.cookie.js' %}"></script>
+        <script src="{%  static 'Home/js/waypoints.min.js' %}"></script>
+        <script src="{%  static 'Home/js/modernizr.js' %}"></script>
+        <script src="{%  static 'Home/js/bootstrap-hover-dropdown.js' %}"></script>
+        <script src="{%  static 'Home/js/owl.carousel.min.js' %}"></script>
+        <script src="{%  static 'Home/js/front.js' %}"></script>
+    </body>
+</html>

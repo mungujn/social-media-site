@@ -1,0 +1,24 @@
+{% extends 'Home/home-template.html' %}
+{% block title %}
+Edit Profile
+{% endblock %}
+{% block stylesheet %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{%  static 'Profile/css/register.css' %}"/>
+{% endblock %}
+{% block auth_action %}
+    <a href="/login">Login</a>
+{% endblock %}
+{% block navbar %}
+<!-- User is likely not registered so dont show the navbar with those links-->
+{% endblock %}
+{% block body %}
+<div class="container form_container">
+            <form role="form" class="register_form" action="" method="post">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <input type="submit" name="submit" value="Edit" />
+            </form>
+        </div>
+{% endblock %}

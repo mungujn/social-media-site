@@ -1,0 +1,159 @@
+{% extends 'Home/home-template.html' %}
+{% block title %}
+    {{ profile.user.username }}
+{% endblock %}
+
+{% block stylesheet %}
+    {% load staticfiles %}
+    <link href="{%  static 'Profile/css/view-profile.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+ <div id="all">
+            <div id="content">
+                <div class="container">
+                    <div class="col-md-12">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="{% url 'home:home' %}">Home</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'profile:all' %}">Profiles</a>
+                            </li>
+                            <li>{{ profile.user.username }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row" id="productMain">
+                            <div class="col-sm-6">
+                                <div id="mainImage">
+                                    <img src="{{ profile.profile_pic }}" alt="Profile Picture" class="img-responsive">
+                                </div>
+                                <!-- /.ribbon -->
+                                <!-- /.ribbon -->
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="box">
+                                    <h1 class="text-center">{{ Profile.user.username }}</h1>
+
+                                    <p class="text-center buttons">
+                                        {% if current_user %}
+                                            <a id="id_button" href="{% url 'profile:edit' %}" class="btn btn-default"> <!--TODO: Remove hardcoded url-->
+                                                <i class="fa fa-pencil"></i> Edit Profile
+                                            </a>
+                                            {% else %}
+                                            <a id="id_button" href="{% url 'profile:add-friend' %}" class="btn btn-default"> <!--TODO: Remove hardcoded url-->
+                                                <i class="fa fa-pencil"></i> Add friend
+                                            </a>
+                                        {% endif %}
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box" id="details">
+                            <p> <h4>Bio</h4>
+                            <blockquote>
+                                    <p>
+                                        <em>
+                                            {{ profile.bio }}
+                                        </em>
+                                    </p>
+                            </blockquote> <hr>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <!-- *** MENUS AND FILTERS ***
+ _________________________________________________________ -->
+                        <!-- *** MENUS AND FILTERS END *** -->
+                        <div class="panel panel-default sidebar-menu">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">About</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="nav nav-pills nav-stacked category-menu">
+                                    <li>
+                                        <ul>
+                                            <li>
+                                                <p>Went to: {{ profile.school }} </p>
+                                            </li>
+                                            <li>
+                                                <p>Works at: {{ profile.work }} </p>
+                                            </li>
+                                            <li>
+                                                <p>Lives in: {{ profile.location }} </p>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel panel-default sidebar-menu">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Friends</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="nav nav-pills nav-stacked category-menu">
+                                    <li>
+                                        <ul>
+                                            {% for friend in friends %}
+                                                <li>
+                                                <a href="/profile/{{ friend.user.username }}">{{ friend.user.username }}</a> <!--TODO: remove hardcoded....-->
+                                                </li>
+                                            {% endfor %}
+
+                                            <li>
+                                                <a href="category.html">Friend Name</a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">Friend Name</a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">Friend Name</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel panel-default sidebar-menu">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Posts</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="nav nav-pills nav-stacked category-menu">
+                                    <li>
+                                        <ul>
+                                            {% for post in posts %}
+                                                <li>
+                                                <a href="/post/{{ post.title }}">{{ post.title }}</a> <!--TODO: remove hardcoded....-->
+                                                </li>
+                                            {% endfor %}
+                                            <li>
+                                                <a href="category.html">Post.....</a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">Post.....</a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">Post.....</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="banner">
+                            <a href="#">
+                                <img src="img/banner.jpg" alt="Mungujakisa 2016" class="img-responsive"> <!--TODO: insert site logo graphic-->
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.col-md-9 -->
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /#content -->
+        </div>
+        <!-- /#all -->
+{% endblock %}

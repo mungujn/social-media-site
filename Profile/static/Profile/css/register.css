@@ -1,0 +1,27 @@
+
+
+.submit_button
+{
+    margin: auto;
+    max-width: 70px;
+}
+
+.register_form
+{
+    margin: auto;
+    max-height: 800px;
+}
+
+.form_container
+{
+    position: relative;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: 400px;
+    max-height: 800px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+

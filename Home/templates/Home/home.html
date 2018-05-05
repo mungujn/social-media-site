@@ -1,0 +1,280 @@
+{% extends 'Home/home-template.html' %}
+{% block title %}
+Home
+{% endblock %}
+{% block stylesheet%}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{%  static 'Profile/css/home.css' %}"/>
+{% endblock %}
+{% block body %}
+<div id="all">
+            <div id="content">
+                <div class="container">
+                    <div class="col-md-12">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <img src="file:///C:/Program%20Files%20(x86)/Pinegrow%20Web%20Designer/placeholders/img4.jpg" alt="">
+                            <div class="caption">
+                                <h3>{{ request.user.first_name}} {{request.user.last_name }}</h3>
+                                <p>{{ profile.bio }}</p>
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="panel panel-default sidebar-menu">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">About</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="nav nav-pills nav-stacked category-menu">
+                                    <li>
+                                        <ul>
+                                            <li>
+                                                <a href="category.html">Went to: {{ profile.school }} </a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">Works at: {{ profile.work }}</a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">Lives in: {{ profile.location }}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel panel-default sidebar-menu">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Friends</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="nav nav-pills nav-stacked category-menu">
+                                    <li>
+                                        <ul>
+                                            {% for friend in friends %}
+                                                <li>
+                                                <a href="/profile/{{ friend.user.username }}">{{ friend.user.username }}</a> <!--TODO: remove hardcoded....-->
+                                                </li>
+                                            {% endfor %}
+                                            <li>
+                                                <a href="category.html">Friend Name</a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">Friend Name</a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">Friend Name</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel panel-default sidebar-menu">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Posts</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="nav nav-pills nav-stacked category-menu">
+                                    <li>
+                                        <ul>
+                                            {% for post in posts %}
+                                                <li>
+                                                <a href="/post/{{ post.title }}">{{ post.title }}</a> <!--TODO: remove hardcoded....-->
+                                                </li>
+                                            {% endfor %}
+                                            <li>
+                                                <a href="category.html">Post.....</a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">Post.....</a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">Post.....</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" id="blog-listing">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="#">Posts</a>
+                            </li>
+                        </ul>
+                        <div class="box">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label class="control-label" for="exampleInputEmail1">Whats on your mind</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Write Post">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="exampleInputFile">Attach Picture</label>
+
+                                    <input type="file" id="exampleInputFile">
+                                </div>
+
+                                <button type="submit" class="btn">Submit</button>
+                            </form>
+                        </div>
+                        <div class="post">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-2 text-center-xs">
+                                    <p><img src="img/blog-avatar2.jpg" class="img-responsive img-circle" alt=""></p>
+                                </div>
+                                <div class="col-sm-9 col-md-10">
+                                    <h5>Post Author</h5>
+                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
+                                </div>
+                            </div>
+                            <p class="date-comments"><a href="post.html"><i class="fa fa-calendar-o"></i> June 20, 2013</a><a href="post.html"><i class="fa fa-comment-o"></i> 8 Comments</a></p>
+                            <div class="image">
+                                <a href="post.html">
+                                    <img src="img/blog2.jpg" class="img-responsive" alt="Example blog post alt">
+                                </a>
+                            </div>
+                            <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae
+            est. Mauris placerat eleifend leo.</p>
+                            <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a></p>
+                        </div>
+                        <div class="post">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-2 text-center-xs">
+                                    <p><img src="img/blog-avatar2.jpg" class="img-responsive img-circle" alt=""></p>
+                                </div>
+                                <div class="col-sm-9 col-md-10">
+                                    <h5>Post Author</h5>
+                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
+                                </div>
+                            </div>
+                            <p class="date-comments"><a href="post.html"><i class="fa fa-calendar-o"></i> June 20, 2013</a><a href="post.html"><i class="fa fa-comment-o"></i> 8 Comments</a></p>
+                            <div class="image">
+                                <a href="post.html">
+                                    <img src="img/blog2.jpg" class="img-responsive" alt="Example blog post alt">
+                                </a>
+                            </div>
+                            <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae
+            est. Mauris placerat eleifend leo.</p>
+                            <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a></p>
+                        </div>
+                        <ul class="pager">
+                            <li class="previous">
+                                <a href="#">&larr; Older</a>
+                            </li>
+                            <li class="next disabled">
+                                <a href="#">Newer &rarr;</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <!-- *** MENUS AND FILTERS ***
+ _________________________________________________________ -->
+                        <!-- *** MENUS AND FILTERS END *** -->
+                        <div class="thumbnail">
+                            <img src="file:///C:/Program%20Files%20(x86)/Pinegrow%20Web%20Designer/placeholders/img4.jpg" alt="">
+                            <div class="caption">
+                                <h3>Advert</h3>
+                                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                            </div>
+                        </div>
+                        <div class="banner">
+                            <a href="#">
+                                <img src="img/banner.jpg" alt="Mungujsakisa 2016" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.col-md-9 -->
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /#content -->
+            <!-- *** FOOTER ***
+ _________________________________________________________ -->
+            <div id="footer" data-animate="fadeInUp">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <h4>Pages</h4>
+                            <ul>
+                                <li>
+                                    <a href="text.html">Home</a>
+                                </li>
+                                <li>
+                                    <a href="text.html">Posts</a>
+                                </li>
+                                <li>
+                                    <a href="text.html">Friends</a>
+                                </li>
+                                <li>
+                                    <a href="text.html">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="text.html">Messages</a>
+                                </li>
+                                <li>
+                                    <a href="text.html">About us</a>
+                                </li>
+                                <li>
+                                    <a href="faq.html">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="contact.html">Contact us</a>
+                                </li>
+                            </ul>
+                            <hr>
+                            <h4>User section</h4>
+                            <ul>
+                                <li>
+                                    <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                                </li>
+                                <li>
+                                    <a href="register.html">Regiter</a>
+                                </li>
+                            </ul>
+                            <hr class="hidden-md hidden-lg hidden-sm">
+                        </div>
+                        <!-- /.col-md-3 -->
+                        <!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6">
+                            <h4>Where to find us</h4>
+                            <p><strong>Obaju Ltd.</strong> <br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>England<br> <strong>Great Britain</strong> </p>
+                            <a href="contact.html">Go to contact page</a>
+                            <hr class="hidden-md hidden-lg">
+                        </div>
+                        <!-- /.col-md-3 -->
+                        <div class="col-md-4 col-sm-6">
+                            <h4>Social</h4>
+                            <p class="social"> <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a> <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a> <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a> <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a> <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a> </p>
+                        </div>
+                        <!-- /.col-md-3 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /#footer -->
+            <!-- *** FOOTER END *** -->
+            <!-- *** COPYRIGHT ***
+ _________________________________________________________ -->
+            <div id="copyright">
+                <div class="container">
+                    <div class="col-md-6">
+                        <p class="pull-left">© 2016 Mungujakisa Nickson.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="pull-right">Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious.com</a> <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  --> </p>
+                    </div>
+                </div>
+            </div>
+            <!-- *** COPYRIGHT END *** -->
+        </div>
+{% endblock %}
