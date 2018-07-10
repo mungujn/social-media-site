@@ -23,7 +23,7 @@ from django.contrib import admin
 from Home import views
 
 urlpatterns = [
-    url(r'profile/', include('Profile.urls')),
+    url(r'profile/', include('Profile.urls')), 
     url(r'home/', include('Home.urls')),
     url(r'posts/', include('Post.urls')),
     url(r'comments/', include('Comment.urls')),

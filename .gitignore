@@ -1,3 +1,5 @@
 test_profile_pic.jpg
 *.pyc
+.vscode/
+db.sqlite3
 #.gitignore
